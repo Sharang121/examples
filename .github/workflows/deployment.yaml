@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: guestbook-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: guestbook-app
+  template:
+    metadata:
+      labels:
+        app: guestbook-app
+    spec:
+      containers:
+        - name: guestbook-app
+          image: sharang121/guestbook-app:${{ github.sha }}  # Replace with your Docker Hub image details
+          ports: 8081
+            - containerPort: 80
